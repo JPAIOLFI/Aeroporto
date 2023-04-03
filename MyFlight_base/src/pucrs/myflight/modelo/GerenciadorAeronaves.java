@@ -16,7 +16,11 @@ public class GerenciadorAeronaves {
         return aeronaves;
 
     }
-    public Aeronave BuscaPorCodigo(String Cod){
+    public Aeronave
+    
+    
+    
+     BuscaPorCodigo(String Cod){
 
         for (Aeronave A : aeronaves) {
             if(A.getCodigo().equals(Cod))
