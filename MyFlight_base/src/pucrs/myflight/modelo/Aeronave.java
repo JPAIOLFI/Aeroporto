@@ -16,4 +16,9 @@ public class Aeronave {
 	public String getDescricao() {
 		return descricao;
 	}
+
+	@Override
+	public String toString() {
+		return "Aeronave (codigo = " + codigo + ", descricao = " + descricao + ")";
+	}
 }

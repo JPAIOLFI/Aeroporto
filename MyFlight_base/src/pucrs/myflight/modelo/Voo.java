@@ -35,6 +35,12 @@ public class Voo {
 		return status;
 	}
 	
+	@Override
+	public String toString() {
+		
+		return "Voo (datahora = " + datahora + ", duracao =" + duracao + ",\n rota " + rota + ", status =" + status + ")";
+	}
+
 	public void setStatus(Status novo) {
 		this.status = novo;
 	}

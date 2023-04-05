@@ -13,6 +13,11 @@ public class Geo {
 		return latitude;
 	}
 	
+	@Override
+	public String toString() {
+		return "Geo : latitude = " + latitude + ", longitude = " + longitude;
+	}
+
 	public double getLongitude() {
 		return longitude;
 	}

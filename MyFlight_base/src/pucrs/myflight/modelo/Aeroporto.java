@@ -19,6 +19,11 @@ public class Aeroporto {
 		return nome;
 	}
 	
+	@Override
+	public String toString() {
+		return "Aeroporto (codigo = " + codigo + ", nome = " + nome + ")";
+	}
+
 	public Geo getLocal() {
 		return loc;
 	}

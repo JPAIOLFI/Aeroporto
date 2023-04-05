@@ -13,6 +13,11 @@ public class CiaAerea {
 		return codigo;
 	}
 	
+	@Override
+	public String toString() {
+		return "CiaAerea codigo = " + codigo + ", nome = " + nome;
+	}
+
 	public String getNome() {
 		return nome;
 	}	
