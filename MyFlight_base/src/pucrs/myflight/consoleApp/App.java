@@ -33,8 +33,9 @@ public class App {
 
         grotas.adicionar(rota1);
         Gvoo.adicionar(v1);
+
         System.out.println(Gvoo.ListarTodos());
-        System.out.println(Gvoo.buscarData(LocalDate.of(2022, 4, 22)));;
+        //System.out.println(Gvoo.buscarData(LocalDate.of(2022, 4, 22)));;
     }
 
 }

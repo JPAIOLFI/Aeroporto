@@ -14,8 +14,13 @@ public class CiaAerea {
 	}
 	
 	@Override
-	public String toString() {
+	/*public String toString() {
+
 		return "CiaAerea codigo = " + codigo + ", nome = " + nome;
+	}*/
+	public String toString() {
+
+		return nome + ", codigo: " + codigo;
 	}
 
 	public String getNome() {

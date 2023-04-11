@@ -20,6 +20,8 @@ public class GerenciadorVoos {
         return voos;
     }
     public ArrayList<Voo> buscarData(LocalDate data){
+
+        
         ArrayList<Voo> aux = new ArrayList<>();
         for (Voo voo : voos) {
             if(voo.getDatahora().toLocalDate().equals(data)){

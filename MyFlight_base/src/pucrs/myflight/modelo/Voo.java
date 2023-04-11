@@ -38,7 +38,7 @@ public class Voo {
 	@Override
 	public String toString() {
 		
-		return "Voo (datahora = " + datahora + ", duracao =" + duracao + ",\n rota " + rota + ", status =" + status + ")";
+		return "Voo = (datahora = " + datahora + ", duracao = " + duracao + ")\n" + "Rota = " + rota + ", status = " + status + ")";
 	}
 
 	public void setStatus(Status novo) {
