@@ -23,7 +23,7 @@ public class Rota {
 	
 	@Override
 	public String toString() {
-		return "(cia = " + cia + ", origem = " + origem + ", destino = " + destino + ", " + aeronave + ")";
+		return "(cia = " + cia + ", origem = " + origem + ", destino = " + destino + ", " + aeronave + ")\n";
 	}
 
 	public Aeroporto getOrigem() {
