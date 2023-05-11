@@ -21,9 +21,9 @@ public class App {
         Aeroporto SalgadoFilho = new Aeroporto("POA", "Salgado Filho", Salgado);
         Aeroporto HugoCartegiani = new Aeroporto("CXJ","Hugo Cartegiani", HugoC);
 
-        Aeronave Aviao = new Aeronave("2588", "PR‑GGD");
-        Aeronave Aviao2 =  new Aeronave("777", "Boeing");
-        Aeronave Aviao3 = new Aeronave("A321", "Airbus");
+        Aeronave Aviao = new Aeronave("2588", "PR‑GGD", 120);
+        Aeronave Aviao2 =  new Aeronave("777", "Boeing", 430);
+        Aeronave Aviao3 = new Aeronave("A321", "Airbus", 500);
 
 
         CiaAerea gol = new CiaAerea("GOL", "GOL");
@@ -76,43 +76,6 @@ public class App {
 
         System.out.println(Gvoo.ListarTodos());
 
-
-       /*  Scanner in = new Scanner(System.in);
-        int opcao = 0;
-        do {
-            System.out.println("1. Mostrar rotas por origem");
-            System.out.println("2. Escolher rota");
-            System.out.println("3. Mostrar voos or data");
-            System.out.println("4. Escolher voo");
-            System.out.println("5. Buscar companhia por nome");
-            System.out.println("6. Buscar Aeroporto por código");
-            System.out.println("7. Buscar Aeronave por código");
-            System.out.println("0.Sair do menu");
-            opcao = in.nextInt();
-
-            switch (opcao) {
-                case 0:
-                    in.close();
-                    System.exit(0);
-                case 1:
-                System.out.println("Digite o codigo do aeropoto de preferência");
-                Aeroporto Aux = GAP.BuscarPorCodigo(in.next());
-                ArrayList<Rota> R = Grotas.BuscarPorOrigem(Aux);
-                for (Rota r : R) {
-                    System.out.println(R);
-                    
-                }
-
-                break;
-            
-                case 2:
-
-            }
-            
-        } while (true);*/
-
-       
-        //System.out.println(Gvoo.buscarData(LocalDate.of(2022, 4, 22)));;
     }
 
 }

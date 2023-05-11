@@ -17,6 +17,7 @@ public class GerenciadorVoos {
     
     }
     public ArrayList<Voo> ListarTodos(){
+
         return voos;
     }
     public ArrayList<Voo> buscarData(LocalDate data){
