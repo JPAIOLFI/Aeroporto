@@ -1,6 +1,7 @@
 package pucrs.myflight.consoleApp;
 
-import java.nio.channels.NetworkChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import pucrs.myflight.modelo.*;
 
 public class App {
     public static void main(String[] args) {
+
         Geo Congas = new Geo(-23.6267, -46.6553);
         Geo Salgado = new Geo(-29.9942, -51.1714);
         Geo santosD = new Geo(-22.9103, -43.1631);
