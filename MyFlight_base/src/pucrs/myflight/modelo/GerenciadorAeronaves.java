@@ -33,19 +33,27 @@ public class GerenciadorAeronaves {
        return null;
 
     }
-    public boolean carregarDados(String nomeArq) {
-        Path path1 = Paths.get("airlines.dat", "equipment.dat");
+    public void carregarDados() {
+        Path path1 = Paths.get("equipment.dat");
+        int erros = 0;
 
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.forName("utf8"))) {
             String line = null;
             while ((line = reader.readLine()) != null) {
+
                 String[] dados = line.split(";");
+                Aeronave aeronave = new Aeronave(dados[0],dados[1],Integer.parseInt(dados[2]));
+
+                aeronaves.add(aeronave);
+
             }
         }
         catch (IOException x) {
-            System.err.format("Erro de E/S: %s%n", x);
+            
         }
-        return true;
+        if(erros > 0) {
+            System.out.println(erros); 
+        }
     }
 
 

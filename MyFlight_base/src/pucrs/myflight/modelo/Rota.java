@@ -1,5 +1,6 @@
 package pucrs.myflight.modelo;
 
+
 public class Rota {
 	private CiaAerea cia;
 	private Aeroporto origem;
@@ -33,4 +34,7 @@ public class Rota {
 	public Aeronave getAeronave() {
 		return aeronave;
 	}
+
+	
 }
+

@@ -35,24 +35,36 @@ public class GerenciadorAeroportos {
         return null;
 
     }
-    public boolean carregarDados(String nomeArq) {
-        Path path2 = Paths.get("airports.dat", "countries.dat")
-        ;
+    public void carregarDados()throws Exception {
+        Path path1 = Paths.get("airports.dat");
+        int erros = 0;
+
         //Path path3 = Paths.get("countries.dat");
-        try (BufferedReader reader = Files.newBufferedReader(path2, Charset.forName("utf8"))) {
+        try (BufferedReader reader = Files.newBufferedReader(path1, Charset.forName("utf8"))) {
             String line = null;
+            line = reader.readLine();
             while ((line = reader.readLine()) != null) {
+
                 String[] dados = line.split(";");
+                double latitude = Double.parseDouble(dados[1]);
+                double longitude = Double.parseDouble(dados[2]);
+
+                Geo loc = new Geo(latitude, longitude);
+                Aeroporto aeroporto = new Aeroporto(dados[0], dados[3],loc);
+
+
             }
         }
         catch (IOException x) {
-            System.err.format("Erro de E/S: %s%n", x);
+            erros++;
         }
-        return true;
+        if(erros > 0) {
+            System.out.println(erros); 
+        }   
     }
-
-
-
-
     
+    
+
 }
+
+
