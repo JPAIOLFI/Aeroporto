@@ -9,37 +9,35 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class GerenciadorAeroportos {
-    private ArrayList<Aeroporto> aeroportos;
+
+    private HashMap<String, Aeroporto> aeroportos;
+    private static GerenciadorAeroportos instance = GerenciadorAeroportos.getInstance();
 
     public GerenciadorAeroportos() {
-        this.aeroportos = new ArrayList<>();
+        this.aeroportos = new HashMap<>();
     }
 
-    public void adicionar(Aeroporto AEroportos) {
-        aeroportos.add(AEroportos);
+    public void adicionar(Aeroporto aeroporto) {
+        this.aeroportos.put(aeroporto.getCodigo(), aeroporto);
 
     }
 
-    public ArrayList<Aeroporto> listarTodos() {
+    public HashMap<String, Aeroporto> listarTodos() {
         return aeroportos;
 
     }
 
     public Aeroporto BuscarPorCodigo(String cod) {
 
-        for (Aeroporto R : aeroportos) {
-            if (R.getCodigo().equals(cod))
-                return R;
-
-        }
-        return null;
+        return aeroportos.get(cod);
 
     }
-    public void carregarDados()throws Exception {
-        Path path1 = Paths.get("airports.dat");
+
+    public void carregarDados() throws Exception {
+        Path path1 = Paths.get("MyFlight_base/src/pucrs/myflight/data/airports.dat");
         int erros = 0;
 
-        //Path path3 = Paths.get("countries.dat");
+        // Path path3 = Paths.get("countries.dat");
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.forName("utf8"))) {
             String line = null;
             line = reader.readLine();
@@ -50,21 +48,24 @@ public class GerenciadorAeroportos {
                 double longitude = Double.parseDouble(dados[2]);
 
                 Geo loc = new Geo(latitude, longitude);
-                Aeroporto aeroporto = new Aeroporto(dados[0], dados[3],loc);
+                Aeroporto aeroporto = new Aeroporto(dados[0], dados[3], loc);
 
+                adicionar(aeroporto);
 
             }
-        }
-        catch (IOException x) {
+        } catch (IOException x) {
             erros++;
         }
-        if(erros > 0) {
-            System.out.println(erros); 
-        }   
+        if (erros > 0) {
+            System.out.println(erros);
+        }
     }
-    
-    
+
+    public static GerenciadorAeroportos getInstance() {
+        if (instance == null) {
+            instance = new GerenciadorAeroportos();
+        }
+        return instance;
+    }
 
 }
-
-

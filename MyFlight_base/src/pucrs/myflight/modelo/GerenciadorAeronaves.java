@@ -8,43 +8,42 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class GerenciadorAeronaves {
-    private ArrayList<Aeronave> aeronaves;
+
+    private HashMap<String, Aeronave> aeronaves;
+    private static GerenciadorAeronaves instance = GerenciadorAeronaves.getInstance();
 
     public GerenciadorAeronaves(){
-        this.aeronaves = new ArrayList<>();
+        this.aeronaves = new HashMap<>();
 
     }
     public void adicionar(Aeronave aviao){
-        aeronaves.add(aviao);
+        this.aeronaves.put(aviao.getCodigo(), aviao);
 
     }
-    public ArrayList<Aeronave> ListarTodas(){
+    public HashMap<String, Aeronave> ListarTodas(){
         return aeronaves;
 
     }
     public Aeronave BuscaPorCodigo(String Cod){
 
-        for (Aeronave A : aeronaves) {
-            if(A.getCodigo().equals(Cod))
-                return A;
-
-            
-        }
-       return null;
+        return aeronaves.get(Cod);
 
     }
     public void carregarDados() {
-        Path path1 = Paths.get("equipment.dat");
+        Path path1 = Paths.get("MyFlight_base/src/pucrs/myflight/data/equipment.dat");
         int erros = 0;
 
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.forName("utf8"))) {
             String line = null;
+
+            line = reader.readLine();
+
             while ((line = reader.readLine()) != null) {
 
                 String[] dados = line.split(";");
                 Aeronave aeronave = new Aeronave(dados[0],dados[1],Integer.parseInt(dados[2]));
 
-                aeronaves.add(aeronave);
+                adicionar(aeronave);
 
             }
         }
@@ -54,6 +53,13 @@ public class GerenciadorAeronaves {
         if(erros > 0) {
             System.out.println(erros); 
         }
+    }
+
+    public static GerenciadorAeronaves getInstance() {
+        if(instance == null){
+			instance = new GerenciadorAeronaves();
+		}
+		return instance;
     }
 
 

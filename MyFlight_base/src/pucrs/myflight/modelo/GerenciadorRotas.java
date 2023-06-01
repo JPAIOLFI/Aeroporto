@@ -10,10 +10,16 @@ import java.util.*;
 public class GerenciadorRotas {
 
     private ArrayList<Rota> rotas;
-
-    public GerenciadorRotas(){
+    private static GerenciadorRotas instance = GerenciadorRotas.getInstance();
+    public GerenciadorRotas (){
         this.rotas = new ArrayList<>();
-
+    }
+    public static GerenciadorRotas getInstance(){
+        
+        if( instance == null){
+            instance = new GerenciadorRotas();
+        }
+        return instance;
     }
      public void adicionar(Rota rota){
         rotas.add(rota);
@@ -35,8 +41,11 @@ public class GerenciadorRotas {
         return aux;
      }
 
-     public void carregarDados() {
-        Path path1 = Paths.get("equipment.dat");
+     public void carregarDados() throws IOException{
+        GerenciadorCias empresas = GerenciadorCias.getInstance();
+        GerenciadorAeroportos aeroporto = GerenciadorAeroportos.getInstance();
+        GerenciadorAeronaves aeronaves = GerenciadorAeronaves.getInstance();
+        Path path1 = Paths.get("MyFlight_base/src/pucrs/myflight/data/routes.dat");
         int erros = 0;
 
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.forName("utf8"))) {
@@ -44,6 +53,16 @@ public class GerenciadorRotas {
             while ((line = reader.readLine()) != null) {
 
                 String[] dados = line.split(";");
+
+                CiaAerea cia = empresas.BuscarNome(dados[0]);
+                Aeroporto origem = aeroporto.BuscarPorCodigo(dados[1]);
+                Aeroporto destino = aeroporto.BuscarPorCodigo(dados[2]);
+                Aeronave aeronave = aeronaves.BuscaPorCodigo(dados[5]);
+
+                
+
+                Rota rota = new Rota(cia, origem, destino, aeronave);
+                adicionar(rota);
                
 
             }

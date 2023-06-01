@@ -9,40 +9,37 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class GerenciadorCias {
-	private ArrayList<CiaAerea> empresas;
+	
+	private HashMap<String, CiaAerea> cias;
+	private static GerenciadorCias instance = GerenciadorCias.getInstance();
 	
 	public GerenciadorCias() {
-		empresas = new ArrayList<>();
+		cias = new HashMap<>();
 	}
+
 	public void adicionar(CiaAerea cia){
-		empresas.add(cia);
+		cias.put(cia.getNome(), cia);
 	}
-	public ArrayList<CiaAerea> ListarTodas(){
-		return empresas;
+
+	public HashMap<String, CiaAerea> ListarTodas(){
+		return cias;
 
 	}
-	public CiaAerea buscarCodigo(String codigo){
 
-		for (CiaAerea cia : empresas) {
-			if(cia.getCodigo().equals(codigo))
-				return cia;
-		}
-		return null;
-	}
+	// public CiaAerea buscarCodigo(String Cod){
+
+	// 	 return this.cias.get(Cod);
+	// }
+
 	public CiaAerea BuscarNome(String nome){
 
-		for (CiaAerea cia : empresas) {
-			if(cia.getNome().equals(nome)){
-				return cia;
-
-			}
-		}
-		return null;
+		return cias.get(nome);
 	}
 	
-	public boolean carregarDados(String nomeArq) {
-        Path path2 = Paths.get("airlines.dat");
-        ArrayList<String> cias= new ArrayList<>();
+	public boolean carregarDados() {
+        Path path2 = Paths.get("MyFlight_base/src/pucrs/myflight/data/airlines.dat");
+
+        
         //Path path3 = Paths.get("countries.dat");
         try (BufferedReader reader = Files.newBufferedReader(path2, Charset.forName("utf8"))) {
             String line = null;
@@ -51,6 +48,7 @@ public class GerenciadorCias {
 				String[] dados = line.split(";");
 				
 				CiaAerea empresa = new CiaAerea(dados[0], dados[1]);
+				this.adicionar(empresa);
                 
             }
         }
@@ -59,3 +57,10 @@ public class GerenciadorCias {
         }
         return true;
     }
+    public static GerenciadorCias getInstance() {
+        if(instance == null){
+			instance = new GerenciadorCias();
+		}
+		return instance;
+    }
+}
